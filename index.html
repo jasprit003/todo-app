@@ -4,21 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>todo List</title>
 </head>
 
 <body>
+  <header>
+    <div class="logo">
+      <h3>todo</h3>
+      <span>List</span>
+    </div>
+  </header>
+
   <main>
     <div class="container">
-      <header>Welcome to the TODO List App</header>
-    </div>
+      <div class="todo-input-container">
+        <input type="text" class="todo-input" placeholder="take Bronny for a walk" id="input-todo">
+        <button class="todo-add-button" id="add-todo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+            <path
+              d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z">
+            </path>
+          </svg>
+        </button>
+      </div>
 
-    <div>
-      <input type="text" id="input-todo">
-      <button id="add-todo">Add</button>
-
-      <ul id="tasks-list"></ul>
+      <ul class="todos" id="todos"></ul>
     </div>
   </main>
 
