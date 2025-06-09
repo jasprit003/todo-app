@@ -14,16 +14,25 @@ const icons = {
   delete: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path></svg> `,
 };
 
-let todosList = [
-  { id: 33, task: "invite James for dinner", isComplete: false },
-
-  { id: 44, task: "call Jenna", isComplete: true },
-];
+let todosList = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   const inputTodo = document.getElementById("input-todo");
   const addTodo = document.getElementById("add-todo");
   const todos = document.getElementById("todos");
+
+  // Get data from localstorage
+  function getData() {
+    const data = localStorage.getItem("todosList");
+
+    if (!data) {
+      console.log("no local storage found!");
+      return;
+    }
+
+    todosList = JSON.parse(data);
+    console.log(todosList);
+  }
 
   function render() {
     // Reset the todos tree before updating
@@ -61,17 +70,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Append li to parent ul
       todos.appendChild(li);
-    });
-  }
 
-  render();
+      // Save lo localstorage
+    });
+    localStorage.setItem("todosList", JSON.stringify(todosList));
+  }
 
   // Add todo function
   function addTodoFunc() {
     // Get task from the input
     const task = inputTodo.value;
 
-    // IF empty input, return
+    // If empty input, return
     if (!task.trim()) {
       return;
     }
@@ -116,4 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       addTodoFunc();
     }
   });
+
+  getData();
+  render();
 });
